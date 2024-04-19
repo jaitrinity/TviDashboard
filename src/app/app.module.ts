@@ -87,6 +87,9 @@ import { RruAddComponent } from './layout/nbs-status/view/rru-add/rru-add.compon
 import { RruDeleteComponent } from './layout/nbs-status/view/rru-delete/rru-delete.component';
 import { BtsComponent } from './layout/nbs-status/view/bts/bts.component';
 import { McbComponent } from './layout/nbs-status/view/mcb/mcb.component';
+import { OdscComponent } from './layout/nbs-status/view/odsc/odsc.component';
+import { MimoComponent } from './layout/nbs-status/view/mimo/mimo.component';
+import { Ip55Component } from './layout/nbs-status/view/ip55/ip55.component';
 
 @NgModule({
   declarations: [
@@ -157,7 +160,10 @@ import { McbComponent } from './layout/nbs-status/view/mcb/mcb.component';
     RruAddComponent,
     RruDeleteComponent,
     BtsComponent,
-    McbComponent
+    McbComponent,
+    OdscComponent,
+    MimoComponent,
+    Ip55Component
   ],
   imports: [
     BrowserAnimationsModule,

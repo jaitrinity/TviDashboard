@@ -74,7 +74,7 @@
   color: white;
 }
 .graph-col{
-  background: #d6e1f5;
+  background: #e8edf5;
   margin-bottom: 10px;
   border-radius: 10px;
   height: 48vh;
@@ -82,6 +82,6 @@
 .graph-name{
   font-size: 20px;
   margin: 10px 0px;
-  border-bottom: 1px solid;
+  /* border-bottom: 2px solid; */
   padding-right: 14px;
 }

@@ -73,6 +73,11 @@ export class GraphComponent implements OnInit {
   public soBarChartData: any = [];
   public soBarChartColors: any = [];
 
+  public rfiGraph: boolean = false;
+  public rfiBarChartLabels: any = [];
+  public rfiBarChartData: any = [];
+  public rfiBarChartColors: any = [];
+
   public srAgingGraph: boolean = false;
   public srAgingLabels: any = [];
   public srAgingData: any = [];
@@ -87,6 +92,11 @@ export class GraphComponent implements OnInit {
   public soAgingLabels: any = [];
   public soAgingData: any = [];
   public soAgingColors: any = [];
+
+  public rfiAgingGraph: boolean = false;
+  public rfiAgingLabels: any = [];
+  public rfiAgingData: any = [];
+  public rfiAgingColors: any = [];
 
   // allProductType: any = "CreateNBS:Macro Anchor,ODSC_Anchor:ODSC Anchor,New_Tenency:New Tenency,Site_Upgrade:Site Upgrade,I_WAN:I-WAN,HPSC:HPSC Anchor,MCU:MCU,UBR:UBR,Fibre_Termination:Fibre Termination,ODSC_Sharing:ODSC Sharing,HPSC_Sharing:HPSC Sharing,TCL_Redwin:TCL_Redwin,Smart_Split:Smart Split,TCU:TCU,HEX_OLT:HEX OLT";
   allProductType: any = "CreateNBS:Macro Anchor,HPSC:HPSC Anchor,New_Tenency:New Tenency,Site_Upgrade:Site Upgrade";
@@ -131,18 +141,16 @@ export class GraphComponent implements OnInit {
 
   ngOnInit() {
     // this.generateGraph1();
-    this.generateGraph1();
-    this.generateGraph2();
-    this.generateGraph3();
-    this.generateGraph4();
-    this.generateGraph5();
-    this.generateGraph6();
+    this.generateGraph123();
+    this.generateGraph456();
+    this.generateSomGraph();
   }
 
   generateGraph123(){
     this.generateGraph1();
     this.generateGraph2();
     this.generateGraph3();
+    this.generateRfiGraph();
   }
 
   // generateGraph1(){
@@ -277,10 +285,44 @@ export class GraphComponent implements OnInit {
     )
   }
 
+  generateRfiGraph(){
+    this.rfiGraph = false;
+    this.rfiBarChartLabels = [];
+    this.rfiBarChartData = [];
+    this.rfiBarChartColors = [];
+
+    let jsonData = {
+      loginEmpId: this.loginEmpId,
+      loginEmpRole: this.loginEmpRole,
+      circleName: this.circleName,
+      operator: this.operator,
+      isHoUser: this.isHoUser,
+      filterPeriod: this.filterPeriod,
+      // srStatus: this.srStatus,
+      filterProductType: this.filterProductType,
+      filterOperator: this.filterOperator,
+      filterCircleName: this.filterCircleName,
+      graphType: "RFI"
+    }
+    this.sharedService.generateGraph(jsonData)
+    .subscribe(
+      (response)=>{
+        this.rfiGraph = true;
+        this.rfiBarChartLabels = response.labelArr;
+        this.rfiBarChartData = response.dataArr;
+        this.rfiBarChartColors = response.bgColorArr;
+      },
+      (error)=>{
+        
+      }
+    )
+  }
+
   generateGraph456(){
     this.generateGraph4();
     this.generateGraph5();
     this.generateGraph6();
+    this.generateRfiAging();
   }
 
   generateGraph4(){
@@ -382,6 +424,136 @@ export class GraphComponent implements OnInit {
     )
   }
 
+  generateRfiAging(){
+    this.rfiAgingGraph = false;
+    this.rfiAgingLabels = [];
+    this.rfiAgingData = [];
+    this.rfiAgingColors = [];
+
+    let jsonData = {
+      loginEmpId: this.loginEmpId,
+      loginEmpRole: this.loginEmpRole,
+      circleName: this.circleName,
+      operator: this.operator,
+      isHoUser: this.isHoUser,
+      filterPeriod: this.filterPeriod1,
+      // srStatus: this.srStatus,
+      filterProductType: this.filterProductType1,
+      filterOperator: this.filterOperator1,
+      filterCircleName: this.filterCircleName1,
+      graphType: "RFI_Aging"
+    }
+    this.sharedService.generateGraph(jsonData)
+    .subscribe(
+      (response)=>{
+        this.rfiAgingGraph = true;
+        this.rfiAgingLabels = response.labelArr;
+        this.rfiAgingData = response.dataArr;
+        this.rfiAgingColors = response.bgColorArr;
+      },
+      (error)=>{
+        
+      }
+    )
+  }
+
+  public filterPeriod2: any = "";
+  public pieChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: true,
+    legend: {
+      position: 'right',
+    },
+    scaleShowValues: true
+  };
+  public pieChartType = 'pie';
+  public pieChartLegend = true;
+
+  
+
+
+  generateSomGraph(){
+    this.generateSoSomGraph();
+    this.generateRfiSomGraph();
+  }
+
+  public soSomGraph: boolean = false;
+  public soSomPieChartLabels = ['A','B','C'];
+  public soSomPieChartData = [300, 500, 100];
+  public soSomPieChartColors : any[] = [
+    {backgroundColor : [], borderColor : []}
+  ];
+  public soSomValueArr = [];
+
+  generateSoSomGraph(){
+    this.soSomGraph = false;
+
+    let jsonData = {
+      loginEmpId: this.loginEmpId,
+      loginEmpRole: this.loginEmpRole,
+      circleName: this.circleName,
+      operator: this.operator,
+      isHoUser: this.isHoUser,
+      filterPeriod: this.filterPeriod2,
+      // srStatus: this.srStatus,
+      filterProductType: "",
+      filterOperator: "",
+      filterCircleName: "",
+      graphType: "soSom"
+    }
+    this.sharedService.generateGraph(jsonData)
+    .subscribe(
+      (response)=>{
+        this.soSomGraph = true;
+        this.soSomPieChartLabels = response.labelArr;
+        this.soSomPieChartData = response.dataArr;
+        this.soSomPieChartColors = response.bgColorArr;
+        this.soSomValueArr = response.valueArr;
+      },
+      (error)=>{
+        
+      }
+    )
+  }
+
+  public rfiSomGraph: boolean = false;
+  public rfiSomPieChartLabels = ['D','E','F'];
+  public rfiSomPieChartData = [400, 600, 1000];
+  public rfiSomPieChartColors : any[] = [
+    {backgroundColor : [], borderColor : []}
+  ];
+  public rfiSomValueArr = [];
+  generateRfiSomGraph(){
+    this.rfiSomGraph = false;
+
+    let jsonData = {
+      loginEmpId: this.loginEmpId,
+      loginEmpRole: this.loginEmpRole,
+      circleName: this.circleName,
+      operator: this.operator,
+      isHoUser: this.isHoUser,
+      filterPeriod: this.filterPeriod2,
+      // srStatus: this.srStatus,
+      filterProductType: "",
+      filterOperator: "",
+      filterCircleName: "",
+      graphType: "rfiSom"
+    }
+    this.sharedService.generateGraph(jsonData)
+    .subscribe(
+      (response)=>{
+        this.rfiSomGraph = true;
+        this.rfiSomPieChartLabels = response.labelArr;
+        this.rfiSomPieChartData = response.dataArr;
+        this.rfiSomPieChartColors = response.bgColorArr;
+        this.rfiSomValueArr = response.valueArr;
+      },
+      (error)=>{
+        
+      }
+    )
+  }
+
   public modalGraph: any = false;
   public modalGraphType: any = "";
   public modalBarChartLabels: any = [];
@@ -473,6 +645,7 @@ export class GraphComponent implements OnInit {
 
   public countGraph: boolean = true;
   public agingGraph: boolean = false;
+  public somGraph: boolean = false;
   showGraph(type:any){
     if(type == 1){
       this.agingGraph = false;

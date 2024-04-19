@@ -568,7 +568,13 @@
             <div class="col-md-3">{{nbsDataObj.noOfBBU}}</div>
           </div>
 
-          <div class="row mr-t mr-b" *ngFor="let bbu of viewDataObj.bbuList; let bbuIndex=index ">
+          <div class="row mr-t mr-b" *ngIf="(nbsDataObj.noOfBBU != null && nbsDataObj.noOfBBU !=0)">
+            <div class="col-md-12">
+              <app-bbu [bbuList]="viewDataObj.bbuList"></app-bbu>
+            </div>
+          </div>
+
+          <!-- <div class="row mr-t mr-b" *ngFor="let bbu of viewDataObj.bbuList; let bbuIndex=index ">
             <div class="col-md-3">
               <label>Make {{bbuIndex+1}}</label>
               <div>{{bbu.bbuMake}}</div>
@@ -585,7 +591,7 @@
               <label>BBU Positioning {{bbuIndex+1}}</label>
               <div>{{bbu.bbuPositioning}}</div>
             </div>
-          </div>
+          </div> -->
           
           <div class="row mr-t mr-b">
             <div class="col-md-2">
@@ -594,8 +600,14 @@
             </div>
             <div class="col-md-3">{{nbsDataObj.noOfRRU}}</div>
           </div>
+
+          <div class="row mr-t mr-b" *ngIf="(nbsDataObj.noOfRRU != null && nbsDataObj.noOfRRU !=0)">
+            <div class="col-md-12">
+              <app-rru [rruList]="viewDataObj.rruList"></app-rru>
+            </div>
+          </div>
           
-          <div class="row mr-t mr-b" *ngFor="let rl of viewDataObj.rruList; let rruIndex=index ">
+          <!-- <div class="row mr-t mr-b" *ngFor="let rl of viewDataObj.rruList; let rruIndex=index ">
             <div class="col-md-2">
               <label>Make of RRU {{rruIndex+1}}</label>
               <div>{{rl.rruMake}}</div>
@@ -616,7 +628,7 @@
               <label>Weight of RRU {{rruIndex+1}}</label>
               <div>{{rl.rruWeight}}</div>
             </div>
-          </div>
+          </div> -->
 
           <div class="row mr-t mr-b">
             <div class="col-md-3">
@@ -1949,7 +1961,13 @@
             <div class="col-md-2"><label>No of ODSC</label></div>
             <div class="col-md-3">{{nbsDataObj.noOfODSC}}</div>
           </div>
-          <div class="row mr-t mr-b" *ngFor="let odsc of viewDataObj.odscList; let odscIndex=index">
+
+          <div class="row mr-t mr-b" *ngIf="(nbsDataObj.noOfODSC != null && nbsDataObj.noOfODSC !=0)">
+            <div class="col-md-12">
+              <app-odsc [odscList]="viewDataObj.odscList"></app-odsc>
+            </div>
+          </div>
+          <!-- <div class="row mr-t mr-b" *ngFor="let odsc of viewDataObj.odscList; let odscIndex=index">
             <div class="col-md-2">
               <label>Make {{odscIndex+1}}</label>
               <div>{{odsc.odscMake}}</div>
@@ -1959,7 +1977,7 @@
               <label>Model {{odscIndex+1}}</label>
               <div>{{odsc.odscModel}}</div>
             </div>
-          </div>
+          </div> -->
 
           <div class="row mr-t mr-b" *ngIf="(nbsDataObj.noOfMicrowave != null) && (is_CreateNBS_Tab || is_ODSC_Anchor_Tab || is_HPSC_Tab || is_HPSC_Sharing_Tab || is_New_Tenency_Tab || is_Site_Upgrade_Tab)">
             <div class="col-md-2">
@@ -2220,7 +2238,13 @@
             <div class="col-md-3">{{nbsDataObj.noOfMassiveMIMOAntenna}}</div>
           </div>
 
-          <div class="row mr-t mr-b" *ngFor="let mimo of viewDataObj.massiveMIMOAntennaList; let mimoIndex=index ">
+          <div class="row mr-t mr-b" *ngIf="(nbsDataObj.noOfMassiveMIMOAntenna != null && nbsDataObj.noOfMassiveMIMOAntenna !=0)">
+            <div class="col-md-12">
+              <app-mimo [mimoList]="viewDataObj.massiveMIMOAntennaList"></app-mimo>
+            </div>
+          </div>
+
+          <!-- <div class="row mr-t mr-b" *ngFor="let mimo of viewDataObj.massiveMIMOAntennaList; let mimoIndex=index ">
             <div class="col-md-2">
               <label> Weight Of Antenna {{mimoIndex+1}}</label>
               <div>{{mimo.mimoAntennaWeight}}</div>
@@ -2233,7 +2257,7 @@
               <label> U Space {{mimoIndex+1}}</label>
               <div>{{mimo.mimoUspace}}</div>
             </div>
-          </div>
+          </div> -->
 
           <div class="row mr-t mr-b" *ngIf="(nbsDataObj.noOfBBU_Delete != null) && (is_Site_Upgrade_Tab)">
             <div class="col-md-2">
@@ -2306,12 +2330,18 @@
             <div class="col-md-3">{{nbsDataObj.noOfIP55}}</div>
           </div>
 
-          <div class="row mr-t mr-b" >
+          <div class="row mr-t mr-b" *ngIf="(nbsDataObj.noOfIP55 != null && nbsDataObj.noOfIP55 !=0)">
+            <div class="col-md-12">
+              <app-ip55 [ip55List]="viewDataObj.ip55List"></app-ip55>
+            </div>
+          </div>
+
+          <!-- <div class="row mr-t mr-b" >
             <div class="col-md-2" *ngFor="let ip55 of viewDataObj.ip55List; let ip55Index=index ">
               <label>Power {{ip55Index+1}}</label>
               <div>{{ip55.ip55Power}}</div>
             </div>
-          </div>
+          </div> -->
 
           <div class="row mr-t mr-b" *ngIf="nbsDataObj.noOfRRU_Delete != null && is_Site_Upgrade_Tab">
             <div class="col-md-2">
