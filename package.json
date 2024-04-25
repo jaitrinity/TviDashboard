@@ -26,6 +26,7 @@
     "bn-ng-idle": "^1.0.0",
     "bootstrap": "^3.4.1",
     "chart.js": "^2.9.3",
+    "chartjs-plugin-labels": "^1.1.0",
     "core-js": "^2.5.4",
     "jquery": "^3.4.1",
     "ng-multiselect-dropdown": "^0.2.4",
